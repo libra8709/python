@@ -20,8 +20,8 @@ try:
     other_out=open("otherspoken.txt","w")
     print(man,file=man_out)
     print(other,file=other_out)
-except IOError:
-    print("file error!")
+except IOError as err:
+    print("file error!"+str(err))
 finally:
     man_out.close()
     other_out.close()
