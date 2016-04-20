@@ -5,10 +5,11 @@ def inputlist(txtfile):
         with open(txtfile) as txt_data:
             txtitem=txt_data.readline()
             txt_out=txtitem.strip().split(",")
-            return txt_out
+            return(txt_out)
     except IOError as ioerr:
         print("IO Error!"+str(ioerr))
-        
+        return(None)
+ 
 def sanitize(time_string):
     try:
         if "-" in time_string:
@@ -21,23 +22,8 @@ def sanitize(time_string):
         return(mins+"."+secs)
     except TypeError as tyerr:
         print("Type Error!"+str(tyerr))
-
-james_item=[]
-julie_item=[]
-mikey_item=[]
-james=inputlist("james.txt")
-for each_t in james:
-    james_item.append(sanitize(each_t))
-julie=inputlist("julie.txt")
-for each_t in julie:
-    julie_item.append(sanitize(each_t))
-mikey=inputlist("mikey.txt")
-for each_t in mikey:
-    mikey_item.append(sanitize(each_t))
-print(james_item)
-print(julie_item)
-print(mikey_item)
-print()
-print(sorted(james_item))
-print(sorted(julie_item))
-print(sorted(mikey_item))
+        return(None)
+ 
+sarah=inputlist("sarah2.txt")
+(s_name,s_Bday)=sarah.pop(0),sarah.pop(0)
+print(s_name+"'s fastest times are:"+str(sorted(set([sanitize(each_t) for each_t in sarah]))[0:3]))

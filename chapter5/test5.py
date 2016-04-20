@@ -1,13 +1,14 @@
-# _*_ conding:utf-8 _*_
+# -*- coding:utf-8 -*-
 
 def inputlist(txtfile):
     try:
         with open(txtfile) as txt_data:
             txtitem=txt_data.readline()
             txt_out=txtitem.strip().split(",")
-            return txt_out
+            return(txt_out)
     except IOError as ioerr:
         print("IO Error!"+str(ioerr))
+        return(None)
         
 def sanitize(time_string):
     try:
@@ -21,17 +22,21 @@ def sanitize(time_string):
         return(mins+"."+secs)
     except TypeError as tyerr:
         print("Type Error!"+str(tyerr))
+        return(None)
 
 james=inputlist("james.txt")
 julie=inputlist("julie.txt")
 mikey=inputlist("mikey.txt")
 sarah=inputlist("sarah.txt")
-james_item=sorted([sanitize(each_t) for each_t in james])
-julie_item=sorted([sanitize(each_t) for each_t in julie])
-mikey_item=sorted([sanitize(each_t) for each_t in mikey])
-sarah_item=sorted([sanitize(each_t) for each_t in sarah])
-
-UNjames=[]
+james_item=sorted(set([sanitize(each_t) for each_t in james]))[0:3]
+julie_item=sorted(set([sanitize(each_t) for each_t in julie]))[0:3]
+mikey_item=sorted(set([sanitize(each_t) for each_t in mikey]))[0:3]
+sarah_item=sorted(set([sanitize(each_t) for each_t in sarah]))[0:3]
+print(james_item)
+print(julie_item)
+print(mikey_item)
+print(sarah_item)
+"""UNjames=[]
 UNjulie=[]
 UNmikey=[]
 UNsarah=[]
@@ -50,4 +55,4 @@ for item in sarah_item:
 print(UNjames[0:3])
 print(UNjulie[0:3])
 print(UNmikey[0:3])
-print(UNsarah[0:3])
+print(UNsarah[0:3])"""
